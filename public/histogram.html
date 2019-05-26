@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/histogram.css">
+        <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans&display=swap" rel="stylesheet">
+        <script src="calculate.js" defer></script>
+    </head>
+    <body>
+        <div>
+            <h1>Histogram Generator</h1>
+            <div id="bounds_div">
+                <h2 id="lower_bound_title">Lower Bounds</h2>
+                <table>
+                    <tr>
+                        <td>Max</td>
+                        <td><input id="input11" type="text" value="100.00" onkeydown="ResetTimer()" onkeyup="StartTimer(11)"></td>
+                    </tr>
+                    <tr>
+                        <td>A+</td>
+                        <td><input id="input10" type="text" value="95.00" onkeydown="ResetTimer()" onkeyup="StartTimer(10)"></td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td><input id="input9" type="text" value="90.00" onkeydown="ResetTimer()" onkeyup="StartTimer(9)"></td>
+                    </tr>
+                    <tr>
+                        <td>A-</td>
+                        <td><input id="input8" type="text" value="85.00" onkeydown="ResetTimer()" onkeyup="StartTimer(8)"></td>
+                    </tr>
+                    <tr>
+                        <td>B+</td>
+                        <td><input id="input7" type="text" value="80.00" onkeydown="ResetTimer()" onkeyup="StartTimer(7)"></td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td><input id="input6" type="text" value="75.00" onkeydown="ResetTimer()" onkeyup="StartTimer(6)"></td>
+                    </tr>
+                    <tr>
+                        <td>B-</td>
+                        <td><input id="input5" type="text" value="70.00" onkeydown="ResetTimer()" onkeyup="StartTimer(5)"></td>
+                    </tr>
+                    <tr>
+                        <td>C+</td>
+                        <td><input id="input4" id="1"type="text" value="65.00" onkeydown="ResetTimer()" onkeyup="StartTimer(4)"></td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td><input id="input3" type="text" value="60.00" onkeydown="ResetTimer()" onkeyup="StartTimer(3)"></td>
+                    </tr>
+                    <tr>
+                        <td>C-</td>
+                        <td><input id="input2" type="text" value="55.00" onkeydown="ResetTimer()" onkeyup="StartTimer(2)"></td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td><input id="input1" type="text" value="50.00" onkeydown="ResetTimer()" onkeyup="StartTimer(1)"></td>
+                    </tr>
+                    <tr>
+                        <td>F</td>
+                        <td><input id="input0" type="text" value="0.00" onkeydown="ResetTimer()" onkeyup="StartTimer(0)"></td>
+                    </tr>
+                </table>
+                <button id="reset" onclick="ResetTable()">Reset</button>
+            </div>
+            <div id="histogram_div">
+                <h2 id="histogram_title">Histogram</h2>
+                <table>
+                    <tr>
+                        <td>A+</td>
+                        <td id="output10"></td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td id="output9"></td>
+                    </tr>
+                    <tr>
+                        <td>A-</td>
+                        <td id="output8"></td>
+                    </tr>
+                    <tr>
+                        <td>B+</td>
+                        <td id="output7"></td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td id="output6"></td>
+                    </tr>
+                    <tr>
+                        <td>B-</td>
+                        <td id="output5"></td>
+                    </tr>
+                    <tr>
+                        <td>C+</td>
+                        <td id="output4"></td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td id="output3"></td>
+                    </tr>
+                    <tr>
+                        <td>C-</td>
+                        <td id="output2"></td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td id="output1"></td>
+                    </tr>
+                    <tr>
+                        <td>F</td>
+                        <td id="output0"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
+}
+
+#bounds_div{
+    background-color: rgb(234, 241, 243);
+    float: left;
+    width: 250px;
+    margin: 10px;
+}
+
+#histogram_div{
+    background-color: rgb(234, 241, 243);
+    float: left;
+    min-width: 200px;
+    margin: 10px;
+
+}
+
+h2 {
+    font-family: 'Merriweather', serif;
+    color: rgb(216,30,30);
+    margin-left: 15px;
+    margin-right: 30px;
+    font-size: 17px;
+}
+
+table{
+    margin-left: 10px;
+    margin-bottom: 20px;
+    widows: 100%;
+}
+
+input {
+    text-align: right;
+    width: 60px;
+    border-radius: 3px;
+    border: 3px;
+    margin-left: 30px;
+    height: 22px;
+    padding-right: 10px;
+}
+
+td {
+    font-family: 'Merriweather', serif;
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: 13px;
+}
+
+#reset {
+    margin-left: 30%;
+    width: 80px;
+    height: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
