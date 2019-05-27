@@ -85,6 +85,7 @@ function CaptureInput(inputNum){
         }
         else {
             input.style.backgroundColor = "rgb(242,191,191)";
+            AppendInvalidInputMessage(input.value, inputNum);
         }
     }
     else {
@@ -99,6 +100,7 @@ function CaptureInput(inputNum){
         }
         else {
             input.style.backgroundColor = "rgb(242,191,191)";
+            AppendInvalidInputMessage(input.value, inputNum);
         } 
     }
 
@@ -108,8 +110,7 @@ function CaptureInput(inputNum){
 function RenderOutput() {
     var distribution = CalculateDistribution();
     ClearPreviousOutput();
-
-    console.log(distribution);
+    AppendNewDistribution(distribution);
 
     for (var index = 0 ; index < 11 ; index++){
         var td = document.getElementById("output" + index.toString());
@@ -120,8 +121,6 @@ function RenderOutput() {
 }
 
 function CalculateDistribution() {
-    grades.sort();
-
     var distribution = [0,0,0,0,0,0,0,0,0,0,0];
     for (var index = 0 ; index < grades.length ; index++) {
         for (var i = 0 ; i < 11 ; i++){
@@ -138,6 +137,68 @@ function ClearPreviousOutput() {
     for (var index = 0 ; index < 11 ; index++){
         var td = document.getElementById("output" + index.toString());
         td.textContent = "";
+    }
+}
+
+function AppendInvalidInputMessage(inputVal, inputNum) {
+    let table = document.getElementById("error_table");
+    let row = table.insertRow(-1);
+    let title = row.insertCell(0);
+    let content = row.insertCell(1);
+
+    let titleText = document.createTextNode('Invalid input ' + '[' + inputVal + ']:');
+    if (inputNum != 11 && inputNum != 0){
+        let contentText = document.createTextNode('The input should be in range ' + 
+        bounds.boundsMap[inputNum+1].lower + ' and ' + 
+        bounds.boundsMap[inputNum-1].lower + '.');
+        content.appendChild(contentText);
+
+    }
+    else if (inputNum == 11){
+        let contentText = document.createTextNode('The input should be in range ' + 
+        ' INT_MAX and ' + bounds.boundsMap[inputNum-1].lower + '.');
+        content.appendChild(contentText);
+    }
+    else if (inputNum == 0){
+        let contentText = document.createTextNode('The input should be in range ' + 
+        bounds.boundsMap[inputNum+1].lower + ' and INT_MIN.');
+        content.appendChild(contentText);
+    }
+
+    title.appendChild(titleText);
+
+    console.log(table.offsetHeight);
+    if (table.offsetHeight >= 550){
+        table.deleteRow(0);
+    }
+}
+
+function AppendNewDistribution(){
+    let table = document.getElementById("error_table");
+    let row = table.insertRow(-1);
+    let title = row.insertCell(0);
+    let content = row.insertCell(1);
+
+    let titleText = document.createTextNode('Current range: ');
+    let contentText = document.createTextNode( 
+        'INT_MAX' + ' - ' + bounds.boundsMap[11].lower + ', ' + 
+        bounds.boundsMap[10].upper + ' - ' + bounds.boundsMap[10].lower + ', ' + 
+        bounds.boundsMap[9].upper + ' - ' + bounds.boundsMap[9].lower + ', ' + 
+        bounds.boundsMap[8].upper + ' - ' + bounds.boundsMap[8].lower + ', ' + 
+        bounds.boundsMap[7].upper + ' - ' + bounds.boundsMap[7].lower + ', ' + 
+        bounds.boundsMap[6].upper + ' - ' + bounds.boundsMap[6].lower + ', ' + 
+        bounds.boundsMap[5].upper + ' - ' + bounds.boundsMap[5].lower + ', ' + 
+        bounds.boundsMap[4].upper + ' - ' + bounds.boundsMap[4].lower + ', ' + 
+        bounds.boundsMap[3].upper + ' - ' + bounds.boundsMap[3].lower + ', ' + 
+        bounds.boundsMap[2].upper + ' - ' + bounds.boundsMap[2].lower + ', ' + 
+        bounds.boundsMap[1].upper + ' - ' + bounds.boundsMap[1].lower + ', ' + 
+        bounds.boundsMap[0].upper + ' - ' + bounds.boundsMap[0].lower
+    ); 
+    title.appendChild(titleText);
+    content.appendChild(contentText);
+
+    if (table.offsetHeight >= 550){
+        table.deleteRow(0);
     }
 }
 
@@ -176,6 +237,7 @@ function initialize() {
         boundsArr.push(parseFloat(document.getElementById("input" + i.toString()).value));
     }
     bounds = new Bounds(boundsArr);
+    grades.sort();
     RenderOutput();
     console.log(bounds);
 }
