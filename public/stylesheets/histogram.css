@@ -30,6 +30,7 @@ table{
     background-color: rgb(234, 241, 243);
     float: left;
     max-width: 500px;
+    min-width: 500px;
     margin: 10px;
 }
 

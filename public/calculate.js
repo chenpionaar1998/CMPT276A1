@@ -53,6 +53,33 @@ class Bounds {
         this.Max = new Bound(boundsArr[11], Number.MAX_SAFE_INTEGER);
         this.boundsMap = [this.F, this.D, this.Cminus, this.C, this.Cplus, this.Bminus, this.B, this.Bplus, this.Aminus, this.A, this.Aplus, this.Max];
     }
+
+    Reset (boundsArr) {
+        this.F.lower = boundsArr[0];
+        this.F.upper = boundsArr[1];
+        this.D.lower = boundsArr[1];
+        this.D.upper = boundsArr[2];
+        this.Cminus.lower = boundsArr[2];
+        this.Cminus.upper = boundsArr[3];
+        this.C.lower = boundsArr[3];
+        this.C.upper = boundsArr[4];
+        this.Cplus.lower = boundsArr[4];
+        this.Cplus.upper = boundsArr[5];
+        this.Bminus.lower = boundsArr[5];
+        this.Bminus.upper = boundsArr[6];
+        this.B.lower = boundsArr[6];
+        this.B.upper = boundsArr[7];
+        this.Bplus.lower = boundsArr[7];
+        this.Bplus.upper = boundsArr[8];
+        this.Aminus.lower = boundsArr[8];
+        this.Aminus.upper = boundsArr[9];
+        this.A.lower = boundsArr[9];
+        this.A.upper = boundsArr[10];
+        this.Aplus.lower = boundsArr[10];
+        this.Aplus.upper = boundsArr[11];
+        this.Max.lower = boundsArr[11];
+        this.Max.upper = Number.MAX_SAFE_INTEGER;
+    }
 }
 
 // Reset the timer on keydown, keydown means the user is still typing
@@ -77,7 +104,6 @@ function CaptureInput(inputNum){
         var nextBound = bounds.boundsMap[inputNum-1];
         if (float_regex.test(input.value) && bound.isValid(input_number, nextBound)){
             // Valid input 
-            console.log("valid");
             bound.updateBounds(input_number, nextBound);
             input.style.backgroundColor = "white";
             // Render the output
@@ -92,7 +118,6 @@ function CaptureInput(inputNum){
         // If the inputNum is 0, there is no next bound to check for
         if (float_regex.test(input.value) && bound.isValidForLastItem(input_number)){
             // Valid input 
-            console.log("valid");
             bound.setLowerBound(input_number);
             input.style.backgroundColor = "white";
             // Render the output
@@ -103,8 +128,6 @@ function CaptureInput(inputNum){
             AppendInvalidInputMessage(input.value, inputNum);
         } 
     }
-
-    console.log(bounds);
 }
 
 function RenderOutput() {
@@ -167,7 +190,6 @@ function AppendInvalidInputMessage(inputVal, inputNum) {
 
     title.appendChild(titleText);
 
-    console.log(table.offsetHeight);
     if (table.offsetHeight >= 550){
         table.deleteRow(0);
     }
@@ -181,7 +203,6 @@ function AppendNewDistribution(){
 
     let titleText = document.createTextNode('Current range: ');
     let contentText = document.createTextNode( 
-        'INT_MAX' + ' - ' + bounds.boundsMap[11].lower + ', ' + 
         bounds.boundsMap[10].upper + ' - ' + bounds.boundsMap[10].lower + ', ' + 
         bounds.boundsMap[9].upper + ' - ' + bounds.boundsMap[9].lower + ', ' + 
         bounds.boundsMap[8].upper + ' - ' + bounds.boundsMap[8].lower + ', ' + 
@@ -227,6 +248,17 @@ function ResetTable() {
     document.getElementById("input2").style.backgroundColor = "white";
     document.getElementById("input1").style.backgroundColor = "white";
     document.getElementById("input0").style.backgroundColor = "white";
+
+    let table = document.getElementById("error_table");
+    let tr = table.getElementsByTagName("tr");
+    console.log(tr);
+    for (var i = tr.length ; i > 0; i--){
+        table.deleteRow(i-1);
+    }
+
+    let boundsArr = [0.00,50.00,55.00,60.00,65.00,70.00,75.00,80.00,85.00,90.00,95.00,100.00];
+    bounds.Reset(boundsArr);
+    RenderOutput();
 }
 
 // Initialize work for when the page first load
@@ -239,7 +271,6 @@ function initialize() {
     bounds = new Bounds(boundsArr);
     grades.sort();
     RenderOutput();
-    console.log(bounds);
 }
 
 initialize();
